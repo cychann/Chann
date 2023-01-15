@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuthentication } from "../context/AuthProvider";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const CATECORIES = ["Men", "Woman", "Accessories", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
+  const navigate = useNavigate();
 
   useEffect(() => {
     action.onAuthChange();
@@ -27,19 +29,28 @@ export default function Header() {
       {user ? (
         <div className="flex items-center">
           <ul className="flex items-center">
-            <li className="flex items-center justify-center cursor-pointer">
+            <li
+              className="flex items-center justify-center cursor-pointer"
+              onClick={() => navigate("/like")}
+            >
               <FaHeart className=" text-lg ml-4" />
               <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
                 0
               </p>
             </li>
-            <li className="flex items-center justify-center cursor-pointer">
+            <li
+              className="flex items-center justify-center cursor-pointer"
+              onClick={() => navigate("/cart")}
+            >
               <FaShoppingBag className=" text-lg ml-4" />
               <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
                 0
               </p>
             </li>
-            <MdLibraryAdd className=" text-lg ml-4 cursor-pointer" />
+            <MdLibraryAdd
+              className=" text-lg ml-4 cursor-pointer"
+              onClick={() => navigate("/register")}
+            />
           </ul>
           <p className="text-sm ml-4">{user.displayName}</p>
           <p
