@@ -20,15 +20,22 @@ export default function Register() {
     writeUserData(product);
   };
   return (
-    <>
-      <h1>Register New Product</h1>
-      <form onSubmit={onSubmitProduct}>
+    <div className="flex flex-col items-center w-full">
+      <h1 className="font-bold text-3xl w-full h-60 flex items-center justify-center">
+        Register New Product
+      </h1>
+      <form
+        className="flex flex-col items-center w-1/2"
+        onSubmit={onSubmitProduct}
+      >
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="file"
           vlaue={product.imageURL}
           onChange={handleInputChange}
         />
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="text"
           placeholder="Product Name"
           value={product.name}
@@ -36,6 +43,7 @@ export default function Register() {
           onChange={handleInputChange}
         />
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="text"
           placeholder="Price"
           value={product.price}
@@ -43,6 +51,7 @@ export default function Register() {
           onChange={handleInputChange}
         />
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="text"
           placeholder="Catecory"
           value={product.catecory}
@@ -50,6 +59,7 @@ export default function Register() {
           onChange={handleInputChange}
         />
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="text"
           placeholder="Description"
           value={product.description}
@@ -57,14 +67,20 @@ export default function Register() {
           onChange={handleInputChange}
         />
         <input
+          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
           type="text"
-          placeholder="옵션을 쉼표로 분리해서 입력해주세요"
+          placeholder="Options (separate with a comma)"
           value={product.options}
           name="options"
           onChange={handleInputChange}
         />
-        <button type="submit">Register!</button>
+        <button
+          className="w-full my-1 p-3 bg-black text-white font-semibold"
+          type="submit"
+        >
+          Register!
+        </button>
       </form>
-    </>
+    </div>
   );
 }
