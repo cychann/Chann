@@ -3,14 +3,6 @@ import { writeProductData } from "../service/database";
 import { uploadImage } from "../service/UploadImage";
 
 export default function Register() {
-  // const [product, setProduct] = useState({
-  //   imageURL: "",
-  //   name: "",
-  //   price: "",
-  //   catecory: "",
-  //   description: "",
-  //   options: "",
-  // });
   const [imageUploadURL, setImageUploadURL] = useState("");
 
   const formRef = useRef();
@@ -28,9 +20,6 @@ export default function Register() {
     const uploaded = await uploadImage(e.target.files[0]);
     setImageUploadURL(uploaded.url);
   };
-  // const handleInputChange = (e) => {
-  //   setProduct({ ...product, [e.target.name]: e.target.value });
-  // };
 
   const onSubmitProduct = (e) => {
     e.preventDefault();
@@ -53,8 +42,8 @@ export default function Register() {
       </h1>
       <form
         className="flex items-center w-1/2"
-        onSubmit={onSubmitProduct}
         ref={formRef}
+        onSubmit={onSubmitProduct}
       >
         <div className="flex">
           <input
@@ -70,6 +59,7 @@ export default function Register() {
               <button
                 className="font-semibold text-xl"
                 onClick={imageUploadBtn}
+                type="button"
               >
                 이미지 업로드
               </button>
