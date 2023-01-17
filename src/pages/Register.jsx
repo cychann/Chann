@@ -51,61 +51,70 @@ export default function Register() {
       <h1 className="font-bold text-3xl w-full h-60 flex items-center justify-center">
         Register New Product
       </h1>
-      <form
-        className="flex flex-col items-center w-1/2"
-        onSubmit={onSubmitProduct}
-      >
-        <div>
+      <form className="flex items-center w-1/2" onSubmit={onSubmitProduct}>
+        <div className="flex">
           <input
             className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl hidden"
             type="file"
             onChange={handleFileChange}
             ref={imageRef}
           />
-          {imageUploadURL ? <img src={imageUploadURL} /> : <div>asd</div>}
-          <button onClick={imageUploadBtn}>이미지 업로드</button>
+          <div className="w-60 h-72 bg-gray-100 flex flex-col items-center justify-center rounded-lg mr-5">
+            {imageUploadURL ? (
+              <img className="" src={imageUploadURL} />
+            ) : (
+              <button
+                className="font-semibold text-xl"
+                onClick={imageUploadBtn}
+              >
+                이미지 업로드
+              </button>
+            )}
+          </div>
         </div>
-        <input
-          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
-          type="text"
-          placeholder="Product Name"
-          name="name"
-          ref={nameRef}
-        />
-        <input
-          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
-          type="text"
-          placeholder="Price"
-          name="price"
-          ref={priceRef}
-        />
-        <input
-          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
-          type="text"
-          placeholder="Catecory"
-          name="catecory"
-          ref={catecoryRef}
-        />
-        <input
-          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
-          type="text"
-          placeholder="Description"
-          name="description"
-          ref={descriptionRef}
-        />
-        <input
-          className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
-          type="text"
-          placeholder="Options (separate with a comma)"
-          name="options"
-          ref={optionsRef}
-        />
-        <button
-          className="w-full my-1 p-3 bg-black text-white font-semibold"
-          type="submit"
-        >
-          Register!
-        </button>
+        <div>
+          <input
+            className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
+            type="text"
+            placeholder="Product Name"
+            name="name"
+            ref={nameRef}
+          />
+          <input
+            className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
+            type="text"
+            placeholder="Price"
+            name="price"
+            ref={priceRef}
+          />
+          <input
+            className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
+            type="text"
+            placeholder="Catecory"
+            name="catecory"
+            ref={catecoryRef}
+          />
+          <input
+            className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
+            type="text"
+            placeholder="Description"
+            name="description"
+            ref={descriptionRef}
+          />
+          <input
+            className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
+            type="text"
+            placeholder="Options (separate with a comma)"
+            name="options"
+            ref={optionsRef}
+          />
+          <button
+            className="w-full my-1 p-3 bg-black text-white font-semibold"
+            type="submit"
+          >
+            Register!
+          </button>
+        </div>
       </form>
     </div>
   );
