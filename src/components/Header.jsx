@@ -17,7 +17,9 @@ export default function Header() {
   return (
     <hedaer className="flex justify-between items-center p-5 px-32">
       <div className="flex items-center">
-        <p className="text-3xl  cursor-pointer">Chann</p>
+        <p className="text-3xl  cursor-pointer" onClick={() => navigate("/")}>
+          Chann
+        </p>
         <ul className="flex items-center ml-8">
           {CATECORIES.map((catecory) => (
             <li className="mr-3 cursor-pointer text-lg" key={catecory}>

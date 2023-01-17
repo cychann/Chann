@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { writeUserData } from "../service/database";
+import { writeProductData } from "../service/database";
 import { uploadImage } from "../service/UploadImage";
 
 export default function Register() {
@@ -44,14 +44,18 @@ export default function Register() {
     };
     formRef.current.reset();
     setImageUploadURL("");
-    writeUserData(product);
+    writeProductData(product);
   };
   return (
     <div className="flex flex-col items-center w-full">
       <h1 className="font-bold text-3xl w-full h-60 flex items-center justify-center">
         Register New Product
       </h1>
-      <form className="flex items-center w-1/2" onSubmit={onSubmitProduct}>
+      <form
+        className="flex items-center w-1/2"
+        onSubmit={onSubmitProduct}
+        ref={formRef}
+      >
         <div className="flex">
           <input
             className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl hidden"
