@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useAuthentication } from "../context/AuthProvider";
-import { addProductToLike, readLikeProduct } from "../service/database";
+import {
+  addProductToLike,
+  readLikeProduct,
+  removeProductToLike,
+} from "../service/database";
 export default function Product({ product }) {
   const { user } = useAuthentication();
   const [likeProducts, setLikeProducts] = useState({});
   const [isLike, setIsLike] = useState(false);
 
-  useEffect(() => {
+  const updateLikeProduct = () => {
     readLikeProduct((products) => {
       setLikeProducts(products[user.uid]);
     });
+  };
+
+  useEffect(() => {
+    updateLikeProduct();
   }, []);
 
   useEffect(() => {
@@ -18,7 +26,12 @@ export default function Product({ product }) {
   }, [likeProducts]);
 
   const onClickLikeBtn = () => {
-    addProductToLike(product, user.uid);
+    if (isLike) {
+      removeProductToLike(product, user.uid);
+    } else {
+      addProductToLike(product, user.uid);
+    }
+    setIsLike(!isLike);
   };
   return (
     <li>

@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, off, query } from "firebase/database";
+import { getDatabase, ref, set, onValue, remove } from "firebase/database";
 import app from "./firebaseSDK";
 import { v4 as uuid } from "uuid";
 
@@ -27,6 +27,10 @@ export function readProductData(onUpdate) {
 
 export function addProductToLike(product, userId) {
   set(ref(db, `likes/${userId}/${product.id}`), product);
+}
+
+export function removeProductToLike(product, userId) {
+  remove(ref(db, `likes/${userId}/${product.id}`));
 }
 
 export function readLikeProduct(onUpdate) {
