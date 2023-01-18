@@ -24,3 +24,15 @@ export function readProductData(onUpdate) {
     data && onUpdate(data);
   });
 }
+
+export function addProductToLike(product, userId) {
+  set(ref(db, `likes/${userId}/${product.id}`), product);
+}
+
+export function readLikeProduct(onUpdate) {
+  const productRef = ref(db, "likes");
+  onValue(productRef, (snapshot) => {
+    const data = snapshot.val();
+    data && onUpdate(data);
+  });
+}
