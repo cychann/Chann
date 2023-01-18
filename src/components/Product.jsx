@@ -13,7 +13,7 @@ export default function Product({ product }) {
 
   const updateLikeProduct = () => {
     readLikeProduct((products) => {
-      setLikeProducts(products[user.uid]);
+      products && setLikeProducts(products[user.uid]);
     });
   };
 

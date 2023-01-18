@@ -37,6 +37,6 @@ export function readLikeProduct(onUpdate) {
   const productRef = ref(db, "likes");
   onValue(productRef, (snapshot) => {
     const data = snapshot.val();
-    data && onUpdate(data);
+    onUpdate(data);
   });
 }

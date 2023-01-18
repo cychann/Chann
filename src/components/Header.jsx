@@ -20,7 +20,9 @@ export default function Header() {
   useEffect(() => {
     if (user) {
       readLikeProduct((products) => {
-        setLikeCount(Object.keys(products[user.uid]).length);
+        products
+          ? setLikeCount(Object.keys(products[user.uid]).length)
+          : setLikeCount(0);
       });
     }
   }, [user]);
