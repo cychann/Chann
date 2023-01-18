@@ -3,16 +3,27 @@ import { useAuthentication } from "../context/AuthProvider";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { readLikeProduct } from "../service/database";
 
 const CATECORIES = ["Men", "Woman", "Accessories", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
+  const [likeCount, setLikeCount] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     action.onAuthChange();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      readLikeProduct((products) => {
+        setLikeCount(Object.keys(products[user.uid]).length);
+      });
+    }
+  }, [user]);
 
   return (
     <hedaer className="flex justify-between items-center p-5 px-32">
@@ -37,7 +48,7 @@ export default function Header() {
             >
               <FaHeart className=" text-lg ml-4" />
               <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                0
+                {likeCount}
               </p>
             </li>
             <li
