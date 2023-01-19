@@ -3,13 +3,14 @@ import { useAuthentication } from "../context/AuthProvider";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { readLikeProduct } from "../service/database";
+import { readBasketProduct, readLikeProduct } from "../service/database";
 
 const CATECORIES = ["Men", "Woman", "Accessories", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
   const [likeCount, setLikeCount] = useState(0);
+  const [basketCount, setBasketCount] = useState(0);
 
   const navigate = useNavigate();
 
@@ -23,6 +24,12 @@ export default function Header() {
         products
           ? setLikeCount(Object.keys(products[user.uid]).length)
           : setLikeCount(0);
+      });
+
+      readBasketProduct((products) => {
+        products
+          ? setBasketCount(Object.keys(products[user.uid]).length)
+          : setBasketCount(0);
       });
     }
   }, [user]);
@@ -59,7 +66,7 @@ export default function Header() {
             >
               <FaShoppingBag className=" text-lg ml-4" />
               <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                0
+                {basketCount}
               </p>
             </li>
             <MdLibraryAdd
