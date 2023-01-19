@@ -41,7 +41,7 @@ export function readLikeProduct(onUpdate) {
   });
 }
 
-export function addProductToBasket(product, userId) {
+export function addOrUpdateProductToBasket(product, userId) {
   set(ref(db, `basket/${userId}/${product.id}`), product);
 }
 

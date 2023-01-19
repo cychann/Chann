@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuthentication } from "../context/AuthProvider";
-import { addProductToBasket } from "../service/database";
+import { addOrUpdateProductToBasket } from "../service/database";
 
 export default function ProductDetail() {
   const {
@@ -33,7 +33,7 @@ export default function ProductDetail() {
       count,
       size: product.options[sizeBtnActive],
     };
-    addProductToBasket(addToProduct, user.uid);
+    addOrUpdateProductToBasket(addToProduct, user.uid);
   };
 
   return (
@@ -62,11 +62,11 @@ export default function ProductDetail() {
         </ul>
         <div className="w-full flex items-center">
           <div className="w-28 h-12 mr-3 border border-gray-300 flex justify-between items-center px-3">
-            <p className="text-3xl" onClick={decreaseCount}>
+            <p className="text-3xl cursor-pointer" onClick={decreaseCount}>
               -
             </p>
             <p className="text-2xl font-semibold">{count}</p>
-            <p className="text-3xl" onClick={increaseCount}>
+            <p className="text-3xl cursor-pointer" onClick={increaseCount}>
               +
             </p>
           </div>

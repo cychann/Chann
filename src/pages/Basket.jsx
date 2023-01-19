@@ -41,7 +41,9 @@ export default function Basket() {
               ))}
             </ul>
           ) : (
-            <div>장바구니에 상품이 없습니다.</div>
+            <div className="text-xl text-center pt-10">
+              장바구니에 상품이 없습니다.
+            </div>
           )}
         </div>
         <div className="w-1/4 bg-gray-200 p-10">
@@ -49,7 +51,7 @@ export default function Basket() {
             Order Summary
           </h1>
           <hr />
-          {Object.keys(basketProducts).length !== 0 ? (
+          {Object.keys(basketProducts).length !== 0 && (
             <ul className="flex flex-col border-gray-400 border-b-2 py-4">
               {Object.keys(basketProducts).map((key) => (
                 <li className="flex justify-between">
@@ -60,8 +62,6 @@ export default function Basket() {
                 </li>
               ))}
             </ul>
-          ) : (
-            <div>장바구니에 상품이 없습니다.</div>
           )}
           <hr />
           <div className="flex justify-between pt-4 mb-8">
