@@ -10,9 +10,13 @@ export default function Basket() {
 
   useEffect(() => {
     readBasketProduct((products) => {
-      products ? setBasketProducts(products[user.uid]) : setBasketProducts({});
+      if (user) {
+        products
+          ? setBasketProducts(products[user.uid])
+          : setBasketProducts({});
+      }
     });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     setTotalPrice(0);

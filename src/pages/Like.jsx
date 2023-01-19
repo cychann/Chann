@@ -9,9 +9,11 @@ export default function Like() {
 
   useEffect(() => {
     readLikeProduct((products) => {
-      products ? setLikeProducts(products[user.uid]) : setLikeProducts({});
+      if (user) {
+        products ? setLikeProducts(products[user.uid]) : setLikeProducts({});
+      }
     });
-  }, []);
+  }, [user]);
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
       <h1 className="font-semibold text-3xl my-10">All Prodcuts</h1>
