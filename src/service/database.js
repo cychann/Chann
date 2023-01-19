@@ -40,3 +40,19 @@ export function readLikeProduct(onUpdate) {
     onUpdate(data);
   });
 }
+
+export function addProductToBasket(product, userId) {
+  set(ref(db, `basket/${userId}/${product.id}`), product);
+}
+
+export function removeProductToBasket(product, userId) {
+  remove(ref(db, `basket/${userId}/${product.id}`));
+}
+
+export function readBasketProduct(onUpdate) {
+  const productRef = ref(db, "basket");
+  onValue(productRef, (snapshot) => {
+    const data = snapshot.val();
+    onUpdate(data);
+  });
+}

@@ -1,30 +1,40 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useAuthentication } from "../context/AuthProvider";
+import { addProductToBasket } from "../service/database";
 
 export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
+  const { user } = useAuthentication();
 
   const [sizeBtnActive, setSizeBtnActive] = useState(0);
-  const [basketCount, setBasktetCount] = useState(1);
+  const [count, setCount] = useState(1);
 
   const toggleActive = (e) => {
     setSizeBtnActive(e.target.value);
   };
 
   const increaseCount = () => {
-    setBasktetCount((prev) => prev + 1);
+    setCount((prev) => prev + 1);
   };
 
   const decreaseCount = () => {
-    setBasktetCount((prev) => {
+    setCount((prev) => {
       if (prev > 1) return prev - 1;
       else return prev;
     });
   };
 
-  const addToBasket = () => {};
+  const addToBasket = () => {
+    const addToProduct = {
+      ...product,
+      count,
+      size: product.options[sizeBtnActive],
+    };
+    addProductToBasket(addToProduct, user.uid);
+  };
 
   return (
     <div className="flex max-w-7xl m-auto">
@@ -55,7 +65,7 @@ export default function ProductDetail() {
             <p className="text-3xl" onClick={decreaseCount}>
               -
             </p>
-            <p className="text-2xl font-semibold">{basketCount}</p>
+            <p className="text-2xl font-semibold">{count}</p>
             <p className="text-3xl" onClick={increaseCount}>
               +
             </p>
