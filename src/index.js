@@ -9,6 +9,7 @@ import { AuthenticationProvider } from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Like from "./pages/Like";
 import Cart from "./pages/Cart";
+import ProductDetail from "./pages/ProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/like", element: <Like /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/detail/:productId", element: <ProductDetail /> },
     ],
   },
 ]);

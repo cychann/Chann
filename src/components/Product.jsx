@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useAuthentication } from "../context/AuthProvider";
 import {
@@ -10,6 +11,21 @@ export default function Product({ product }) {
   const { user } = useAuthentication();
   const [likeProducts, setLikeProducts] = useState({});
   const [isLike, setIsLike] = useState(false);
+  const navigate = useNavigate();
+
+  const onClickProduct = () => {
+    navigate(`/detail/${product.id}`, { state: { product } });
+  };
+
+  const onClickLikeBtn = (e) => {
+    e.stopPropagation();
+    if (isLike) {
+      removeProductToLike(product, user.uid);
+    } else {
+      addProductToLike(product, user.uid);
+    }
+    setIsLike(!isLike);
+  };
 
   const updateLikeProduct = () => {
     readLikeProduct((products) => {
@@ -25,16 +41,8 @@ export default function Product({ product }) {
     if (product.id in likeProducts) setIsLike(true);
   }, [likeProducts]);
 
-  const onClickLikeBtn = () => {
-    if (isLike) {
-      removeProductToLike(product, user.uid);
-    } else {
-      addProductToLike(product, user.uid);
-    }
-    setIsLike(!isLike);
-  };
   return (
-    <li>
+    <li className="cursor-pointer" onClick={onClickProduct}>
       <img src={product.imageURL} alt="image" className="mb-3" />
       <div className="flex justify-between px-2">
         <div className="">
