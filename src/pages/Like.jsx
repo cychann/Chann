@@ -13,7 +13,7 @@ export default function Like() {
     });
   }, []);
   return (
-    <div className="flex flex-col items-center max-w-5xl m-auto">
+    <div className="flex flex-col items-center max-w-7xl m-auto">
       <h1 className="font-semibold text-3xl my-10">All Prodcuts</h1>
 
       {Object.keys(likeProducts).length !== 0 ? (

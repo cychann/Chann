@@ -8,8 +8,9 @@ import Products from "./pages/Products";
 import { AuthenticationProvider } from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Like from "./pages/Like";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Basket";
 import ProductDetail from "./pages/ProductDetail";
+import Basket from "./pages/Basket";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       { index: true, element: <Products /> },
       { path: "/register", element: <Register /> },
       { path: "/like", element: <Like /> },
-      { path: "/cart", element: <Cart /> },
+      { path: "/basket", element: <Basket /> },
       { path: "/detail/:productId", element: <ProductDetail /> },
     ],
   },

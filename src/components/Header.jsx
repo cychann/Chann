@@ -55,7 +55,7 @@ export default function Header() {
             </li>
             <li
               className="flex items-center justify-center cursor-pointer"
-              onClick={() => navigate("/cart")}
+              onClick={() => navigate("/basket")}
             >
               <FaShoppingBag className=" text-lg ml-4" />
               <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
