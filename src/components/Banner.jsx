@@ -8,7 +8,15 @@ export default function Banner({ products }) {
   return (
     <div className="flex flex-col items-center  max-w-7xl m-auto">
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full place-items-center">
-        <li className="relative w-2/3 h-[35rem]">
+        <li className="relative w-2/3 h-[35rem] mt-12">
+          <div className="mb-12">
+            <p className="font-bold text-6xl">
+              {Object.values(products).length !== 0 &&
+                Object.values(products).length}{" "}
+              +{" "}
+            </p>
+            <p className="font-semibold text-4xl">Products for you</p>
+          </div>
           <img className="w-full h-full" src="/images/man-banner.jpeg" alt="" />
           <p className="-rotate-90 font-bold text-8xl drop-shadow-3xl text-white -left-24 bottom-20 absolute">
             MEN
@@ -26,15 +34,7 @@ export default function Banner({ products }) {
           </div>
         </li>
 
-        <li className="relative w-2/3  h-[35rem] mt-12">
-          <div className="mb-12">
-            <p className="font-bold text-6xl">
-              {Object.values(products).length !== 0 &&
-                Object.values(products).length}{" "}
-              +{" "}
-            </p>
-            <p className="font-semibold text-4xl">Products for you</p>
-          </div>
+        <li className="relative w-2/3  h-[35rem] ">
           <img
             className=" w-full h-full"
             src="/images/women-banner.jpeg"
@@ -56,7 +56,7 @@ export default function Banner({ products }) {
           </div>
         </li>
 
-        <li className="relative w-2/3 h-[35rem] mb-96">
+        <li className="relative w-2/3 h-[35rem] ">
           <img
             className="w-full h-full"
             src="/images/shoes-banner.jpeg"
@@ -78,7 +78,7 @@ export default function Banner({ products }) {
           </div>
         </li>
 
-        <li className=" relative w-2/3 h-[35rem]">
+        <li className=" relative w-2/3 h-[35rem] mb-96">
           <img
             className=" w-full h-full"
             src="/images/bag-banner.jpeg"
@@ -87,9 +87,9 @@ export default function Banner({ products }) {
           <p className="font-bold text-8xl drop-shadow-3xl text-white bottom-0 absolute">
             BAG
           </p>
-          <div className="absolute -right-20 bottom-32 w-1/2">
+          <div className="absolute -right-12 bottom-32 w-1/2">
             <p className="mb-3 font-semibold">MEN</p>
-            <p className="font-bold text-4xl mb-5">New Autumn Arrivals 2022</p>
+            <p className="font-bold text-4xl mb-5">New Bag 2023</p>
             <div
               className="flex items-center text-lg hover:animate-none cursor-pointer animate-bounce"
               onClick={() => navigate("/catecories/Bag")}
