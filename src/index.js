@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Like from "./pages/Like";
 import ProductDetail from "./pages/ProductDetail";
 import Basket from "./pages/Basket";
+import CatecoryProducts from "./pages/CatecoryProducts";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Products /> },
+      { path: "catecories/:catecoryId", element: <CatecoryProducts /> },
       { path: "/register", element: <Register /> },
       { path: "/like", element: <Like /> },
       { path: "/basket", element: <Basket /> },

@@ -5,7 +5,7 @@ import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { readBasketProduct, readLikeProduct } from "../service/database";
 
-const CATECORIES = ["Men", "Woman", "Bag", "Shoes"];
+const CATECORIES = ["Men", "Women", "Bag", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
@@ -42,7 +42,11 @@ export default function Header() {
         </p>
         <ul className="flex items-center ml-8">
           {CATECORIES.map((catecory) => (
-            <li className="mr-3 cursor-pointer text-lg" key={catecory}>
+            <li
+              className="mr-3 cursor-pointer text-lg"
+              key={catecory}
+              onClick={() => navigate(`catecories/${catecory}`)}
+            >
               {catecory}
             </li>
           ))}
