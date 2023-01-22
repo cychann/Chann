@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Product from "../components/Product";
+import Product from "./Product";
 import { readProductData } from "../service/database";
 
-export default function Products() {
-  const [products, setProducts] = useState({});
-  useEffect(() => {
-    readProductData((products) => {
-      setProducts(products);
-    });
-  }, []);
-
+export default function Products({ products }) {
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
       <h1 className="font-semibold text-3xl my-10">All Prodcuts</h1>
