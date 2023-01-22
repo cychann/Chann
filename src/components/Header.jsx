@@ -69,10 +69,12 @@ export default function Header() {
                 {basketCount}
               </p>
             </li>
-            <MdLibraryAdd
-              className=" text-lg ml-4 cursor-pointer"
-              onClick={() => navigate("/register")}
-            />
+            {user.uid === process.env.REACT_APP_HOST_USER_UD && (
+              <MdLibraryAdd
+                className=" text-lg ml-4 cursor-pointer"
+                onClick={() => navigate("/register")}
+              />
+            )}
           </ul>
           <p className="text-sm ml-4">{user.displayName}</p>
           <p
