@@ -5,7 +5,7 @@ import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { readBasketProduct, readLikeProduct } from "../service/database";
 
-const CATECORIES = ["Men", "Woman", "Accessories", "Shoes"];
+const CATECORIES = ["Men", "Woman", "Bag", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();

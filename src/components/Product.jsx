@@ -43,7 +43,7 @@ export default function Product({ product }) {
 
   return (
     <li className="cursor-pointer" onClick={onClickProduct}>
-      <img src={product.imageURL} alt="image" className="mb-3" />
+      <img className="w-full h-80 mb-3" src={product.imageURL} alt="image" />
       <div className="flex justify-between px-2">
         <div className="">
           <p className="text-sm text-gray-400 font-bold">{product.catecory}</p>

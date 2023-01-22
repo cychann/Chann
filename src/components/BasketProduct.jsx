@@ -28,7 +28,7 @@ export default function BasketProduct({ product }) {
   return (
     <li className="border-t-2 py-4 flex items-center">
       <div className="w-1/2 flex">
-        <img className="w-22 h-24 mr-6" src={product.imageURL} alt="image" />
+        <img className="w-24 h-24 mr-6" src={product.imageURL} alt="image" />
         <div className="pt-5">
           <p className="font-bold">{product.name}</p>
           <p className="font-bold text-gray-400">{product.catecory}</p>

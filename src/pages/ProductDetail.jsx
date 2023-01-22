@@ -37,8 +37,8 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="flex max-w-7xl m-auto">
-      <img className="w-1/2 h-full mr-16" src={product.imageURL} alt="image" />
+    <div className="flex max-w-7xl m-auto h-full pt-10">
+      <img className="w-1/2 h-5/6 mr-16" src={product.imageURL} alt="image" />
       <div className="w-1/2">
         <p className="font-semibold">{product.catecory}</p>
         <p className="font-bold text-2xl mb-1">{product.name}</p>
