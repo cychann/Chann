@@ -41,13 +41,13 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="flex max-w-7xl m-auto h-full pt-10">
+    <div className="flex flex-col md:flex-row max-w-7xl m-auto h-full pt-10 px-4 md:px-0">
       <img
-        className="w-1/2 h-5/6 mr-16"
+        className="w-full md:w-1/2 h-5/6 mr-16 mb-8 md:mb-0"
         src={product.imageURL}
         alt="product_detail_image"
       />
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <p className="font-semibold">{product.catecory}</p>
         <p className="font-bold text-2xl mb-1">{product.name}</p>
         <p className="font-bold text-2xl mb-3">{product.price}</p>
