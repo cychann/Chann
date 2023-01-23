@@ -89,7 +89,7 @@ export default function Header() {
           <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {CATECORIES.map((catecory) => (
               <li
-                className="mr-3 cursor-pointer text-lg text-gray-600 hover:text-black px-4"
+                className="cursor-pointer text-lg text-gray-600 hover:text-black px-2 lg:px-4"
                 key={catecory}
                 onClick={() => navigate(`catecories/${catecory}`)}
               >
@@ -98,7 +98,7 @@ export default function Header() {
             ))}
             <div className="flex items-center md:hidden">
               <li
-                className="mr-3 cursor-pointer text-lg text-gray-600 hover:text-black px-4 flex items-center"
+                className="cursor-pointer text-lg text-gray-600 hover:text-black px-2 lg:px-4 flex items-center"
                 onClick={() => navigate("/like")}
               >
                 Like
@@ -107,7 +107,7 @@ export default function Header() {
                 </p>
               </li>
               <li
-                className="mr-3 cursor-pointer text-lg text-gray-600 hover:text-black px-4 flex items-center"
+                className="cursor-pointer text-lg text-gray-600 hover:text-black px-2 lg:px-4 flex items-center"
                 onClick={() => navigate("/basket")}
               >
                 Basket

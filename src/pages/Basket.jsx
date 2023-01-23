@@ -30,13 +30,15 @@ export default function Basket() {
     <div className="flex flex-col items-center m-auto">
       <h1 className="font-semibold text-3xl my-10">Shopping Cart</h1>
       <hr className="w-full mb-10" />
-      <section className="flex justify-between w-full max-w-7xl">
-        <div className="flex flex-col w-4/6">
-          <div className="flex w-full pb-4">
-            <p className="w-1/2 font-bold">PRODUCT</p>
-            <p className="w-1/6 font-bold">PRICE</p>
-            <p className="w-1/6 font-bold">QUANTITY</p>
-            <p className="w-1/6 font-bold">SUBTOTAL</p>
+      <section className="flex flex-col xl:flex-row justify-between items-center xl:items-start w-full max-w-7xl">
+        <div className="flex flex-col w-full xl:w-4/6 px-10 xl:px-0">
+          <div className="hidden md:block">
+            <div className="flex w-full pb-4">
+              <p className="w-1/2 font-bold">PRODUCT</p>
+              <p className="w-1/6 font-bold">PRICE</p>
+              <p className="w-1/6 font-bold">QUANTITY</p>
+              <p className="w-1/6 font-bold">SUBTOTAL</p>
+            </div>
           </div>
           {Object.keys(basketProducts).length !== 0 ? (
             <ul className="flex flex-col">
@@ -50,7 +52,7 @@ export default function Basket() {
             </div>
           )}
         </div>
-        <div className="w-1/4 bg-gray-200 p-10">
+        <div className="w-5/6 xl:w-1/4 bg-gray-200 p-10 mt-5 xl:mt-0">
           <h1 className="font-bold text-3xl border-gray-400 border-b-2 pb-4">
             Order Summary
           </h1>
@@ -58,8 +60,8 @@ export default function Basket() {
           {Object.keys(basketProducts).length !== 0 && (
             <ul className="flex flex-col border-gray-400 border-b-2 py-4">
               {Object.keys(basketProducts).map((key) => (
-                <li className="flex justify-between" key={key}>
-                  <p>{basketProducts[key].name}</p>
+                <li className="flex justify-between mb-3" key={key}>
+                  <p className="w-1/3">{basketProducts[key].name}</p>
                   <p className="font-bold">
                     {(
                       +basketProducts[key].price * basketProducts[key].count
