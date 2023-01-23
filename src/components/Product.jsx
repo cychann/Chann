@@ -52,7 +52,9 @@ export default function Product({ product }) {
         <div className="">
           <p className="text-sm text-gray-400 font-bold">{product.catecory}</p>
           <p className="font-semibold text-lg"> {product.name}</p>
-          <p className="font-semibold text-lg">{product.price}</p>
+          <p className="font-semibold text-lg">
+            {(+product.price).toLocaleString()}원
+          </p>
         </div>
         <FaHeart
           className={

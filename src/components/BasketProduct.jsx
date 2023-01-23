@@ -38,7 +38,7 @@ export default function BasketProduct({ product }) {
           <p className="font-bold text-gray-400">{product.catecory}</p>
         </div>
       </div>
-      <p className="w-1/6 font-bold">{product.price}원</p>
+      <p className="w-1/6 font-bold">{(+product.price).toLocaleString()}원</p>
       <div className="w-1/6">
         <div className="w-24 h-12 mr-3 border border-gray-300 flex justify-between items-center px-3">
           <p className="text-3xl cursor-pointer" onClick={decreaseConunt}>
@@ -51,7 +51,9 @@ export default function BasketProduct({ product }) {
         </div>
       </div>
       <div className="w-1/6 flex justify-between">
-        <p className="font-bold">{product.price * product.count}원</p>
+        <p className="font-bold">
+          {(product.price * product.count).toLocaleString()}원
+        </p>
         <GrFormClose className="cursor-pointer" onClick={onClickDelete} />
       </div>
     </li>

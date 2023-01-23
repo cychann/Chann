@@ -61,7 +61,10 @@ export default function Basket() {
                 <li className="flex justify-between" key={key}>
                   <p>{basketProducts[key].name}</p>
                   <p className="font-bold">
-                    {basketProducts[key].price * basketProducts[key].count}
+                    {(
+                      +basketProducts[key].price * basketProducts[key].count
+                    ).toLocaleString()}
+                    원
                   </p>
                 </li>
               ))}
@@ -70,7 +73,9 @@ export default function Basket() {
           <hr />
           <div className="flex justify-between pt-4 mb-8">
             <p className="font-bold text-2xl">TOTAL</p>
-            <p className="font-bold text-2xl">{totalPrice}</p>
+            <p className="font-bold text-2xl">
+              {(+totalPrice).toLocaleString()}원
+            </p>
           </div>
           <button className="bg-black text-white w-full h-12">
             PROCEED TO CHECKOUT
