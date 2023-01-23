@@ -7,9 +7,9 @@ export default function Banner({ products }) {
 
   return (
     <div className="flex flex-col items-center  max-w-7xl m-auto">
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full place-items-center">
+      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 w-full place-items-center">
         <li className="relative w-2/3 h-[35rem] mt-12">
-          <div className="mb-12">
+          <div className="mb-12 hidden lg:block">
             <p className="font-bold text-6xl">
               {Object.values(products).length !== 0 &&
                 Object.values(products).length}{" "}
@@ -78,7 +78,7 @@ export default function Banner({ products }) {
           </div>
         </li>
 
-        <li className=" relative w-2/3 h-[35rem] mb-96">
+        <li className=" relative w-2/3 h-[35rem] mb-12 sm:mb-96">
           <img
             className=" w-full h-full"
             src="/images/bag-banner.jpeg"
