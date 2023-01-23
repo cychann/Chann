@@ -84,7 +84,7 @@ export default function Register() {
           <input
             className="border border-gray-300 w-full my-1 p-3 text-slate-500 font-semibold text-xl"
             type="text"
-            placeholder="Catecory"
+            placeholder="Catecory (Men, Women, Bag, Shoes)"
             name="catecory"
             ref={catecoryRef}
           />
