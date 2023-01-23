@@ -16,7 +16,7 @@ export default function Header() {
 
   useEffect(() => {
     action.onAuthChange();
-  }, []);
+  }, [action]);
 
   useEffect(() => {
     if (user) {

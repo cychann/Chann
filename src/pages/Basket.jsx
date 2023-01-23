@@ -22,7 +22,7 @@ export default function Basket() {
     setTotalPrice(0);
     Object.keys(basketProducts).map((key) => {
       const subTotal = basketProducts[key].price * basketProducts[key].count;
-      setTotalPrice((prev) => prev + subTotal);
+      return setTotalPrice((prev) => prev + subTotal);
     });
   }, [basketProducts]);
 

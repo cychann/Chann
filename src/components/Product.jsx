@@ -8,7 +8,7 @@ import {
   removeProductToLike,
 } from "../service/database";
 export default function Product({ product }) {
-  const { user, action } = useAuthentication();
+  const { user } = useAuthentication();
   const [likeProducts, setLikeProducts] = useState({});
   const [isLike, setIsLike] = useState(false);
   const navigate = useNavigate();
@@ -29,25 +29,25 @@ export default function Product({ product }) {
     }
   };
 
-  const updateLikeProduct = () => {
+  useEffect(() => {
     if (user) {
       readLikeProduct((products) => {
         products && setLikeProducts(products[user.uid]);
       });
     }
-  };
-
-  useEffect(() => {
-    updateLikeProduct();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (product.id in likeProducts) setIsLike(true);
-  }, [likeProducts]);
+  }, [likeProducts, product.id]);
 
   return (
     <li className="cursor-pointer" onClick={onClickProduct}>
-      <img className="w-full h-80 mb-3" src={product.imageURL} alt="image" />
+      <img
+        className="w-full h-80 mb-3"
+        src={product.imageURL}
+        alt="product_image"
+      />
       <div className="flex justify-between px-2">
         <div className="">
           <p className="text-sm text-gray-400 font-bold">{product.catecory}</p>

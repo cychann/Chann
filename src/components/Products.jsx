@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Product from "./Product";
-import { readProductData } from "../service/database";
 
 export default function Products({ products }) {
   return (

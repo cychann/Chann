@@ -54,7 +54,7 @@ export default function Register() {
           />
           <div className="w-60 h-72 bg-gray-100 flex flex-col items-center justify-center rounded-lg mr-5">
             {imageUploadURL ? (
-              <img className="" src={imageUploadURL} />
+              <img src={imageUploadURL} alt="register_image" />
             ) : (
               <button
                 className="font-semibold text-xl"
