@@ -35,7 +35,7 @@ export default function Header() {
   }, [user]);
 
   return (
-    <hedaer className="flex justify-between items-center p-5 px-32 h-20 fixed w-full z-10 bg-white">
+    <header className="flex justify-between items-center p-5 px-32 h-20 fixed w-full z-10 bg-white">
       <div className="flex items-center">
         <p className="text-3xl  cursor-pointer" onClick={() => navigate("/")}>
           Chann
@@ -93,6 +93,6 @@ export default function Header() {
           Login
         </p>
       )}
-    </hedaer>
+    </header>
   );
 }

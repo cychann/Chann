@@ -12,8 +12,6 @@ export default function CatecoryProducts() {
     });
   }, []);
 
-  console.log(products);
-
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
       <h1 className="font-semibold text-3xl my-10">{catecoryId}</h1>
@@ -22,7 +20,7 @@ export default function CatecoryProducts() {
           Object.keys(products).map(
             (key) =>
               products[key].catecory === catecoryId && (
-                <Product product={products[key]} />
+                <Product product={products[key]} key={key} />
               )
           )}
       </ul>

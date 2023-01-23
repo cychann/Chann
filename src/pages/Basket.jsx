@@ -41,7 +41,7 @@ export default function Basket() {
           {Object.keys(basketProducts).length !== 0 ? (
             <ul className="flex flex-col">
               {Object.keys(basketProducts).map((key) => (
-                <BasketProduct product={basketProducts[key]} />
+                <BasketProduct product={basketProducts[key]} key={key} />
               ))}
             </ul>
           ) : (
@@ -58,7 +58,7 @@ export default function Basket() {
           {Object.keys(basketProducts).length !== 0 && (
             <ul className="flex flex-col border-gray-400 border-b-2 py-4">
               {Object.keys(basketProducts).map((key) => (
-                <li className="flex justify-between">
+                <li className="flex justify-between" key={key}>
                   <p>{basketProducts[key].name}</p>
                   <p className="font-bold">
                     {basketProducts[key].price * basketProducts[key].count}

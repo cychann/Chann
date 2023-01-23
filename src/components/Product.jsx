@@ -8,7 +8,7 @@ import {
   removeProductToLike,
 } from "../service/database";
 export default function Product({ product }) {
-  const { user } = useAuthentication();
+  const { user, action } = useAuthentication();
   const [likeProducts, setLikeProducts] = useState({});
   const [isLike, setIsLike] = useState(false);
   const navigate = useNavigate();
@@ -19,18 +19,22 @@ export default function Product({ product }) {
 
   const onClickLikeBtn = (e) => {
     e.stopPropagation();
-    if (isLike) {
-      removeProductToLike(product, user.uid);
-    } else {
-      addProductToLike(product, user.uid);
+    if (user) {
+      if (isLike) {
+        removeProductToLike(product, user.uid);
+      } else {
+        addProductToLike(product, user.uid);
+      }
+      setIsLike(!isLike);
     }
-    setIsLike(!isLike);
   };
 
   const updateLikeProduct = () => {
-    readLikeProduct((products) => {
-      products && setLikeProducts(products[user.uid]);
-    });
+    if (user) {
+      readLikeProduct((products) => {
+        products && setLikeProducts(products[user.uid]);
+      });
+    }
   };
 
   useEffect(() => {

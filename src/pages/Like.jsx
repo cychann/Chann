@@ -21,7 +21,7 @@ export default function Like() {
       {Object.keys(likeProducts).length !== 0 ? (
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4  gap-4 gap-y-5">
           {Object.keys(likeProducts).map((key) => (
-            <Product product={likeProducts[key]} />
+            <Product product={likeProducts[key]} key={key} />
           ))}
         </ul>
       ) : (

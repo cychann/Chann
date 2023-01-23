@@ -9,7 +9,7 @@ export default function Products({ products }) {
       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4  gap-4 gap-y-5  w-full">
         {products &&
           Object.keys(products).map((key) => (
-            <Product product={products[key]} />
+            <Product product={products[key]} key={key} />
           ))}
       </ul>
     </div>

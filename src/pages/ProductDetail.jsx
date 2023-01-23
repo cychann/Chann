@@ -7,7 +7,7 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { user } = useAuthentication();
+  const { user, action } = useAuthentication();
 
   const [sizeBtnActive, setSizeBtnActive] = useState(0);
   const [count, setCount] = useState(1);
@@ -28,12 +28,16 @@ export default function ProductDetail() {
   };
 
   const addToBasket = () => {
-    const addToProduct = {
-      ...product,
-      count,
-      size: product.options[sizeBtnActive],
-    };
-    addOrUpdateProductToBasket(addToProduct, user.uid);
+    if (user) {
+      const addToProduct = {
+        ...product,
+        count,
+        size: product.options[sizeBtnActive],
+      };
+      addOrUpdateProductToBasket(addToProduct, user.uid);
+    } else {
+      action.signIn();
+    }
   };
 
   return (
@@ -49,6 +53,7 @@ export default function ProductDetail() {
           {product.options.map((option, idx) => (
             <li
               value={idx}
+              key={idx}
               className={
                 idx === sizeBtnActive
                   ? "w-12 h-7 border border-gray-300 flex justify-center items-center mr-3 cursor-pointer bg-black text-white"
