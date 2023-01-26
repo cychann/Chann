@@ -10,38 +10,26 @@ const CATECORIES = ["Men", "Women", "Bag", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
-  // const [likeCount, setLikeCount] = useState(0);
-  const [basketCount, setBasketCount] = useState(0);
-
   const navigate = useNavigate();
+
+  const { data: likeProducts } = useQuery(
+    ["like_products", user && user.uid],
+    () => readLikeProduct(user && user.uid),
+    {
+      enabled: (user && !!user.uid) || false,
+    }
+  );
+  const { data: basketProducts } = useQuery(
+    ["basket_products", user && user.id],
+    () => readBasketProduct(user && user.uid),
+    {
+      enabled: (user && !!user.uid) || false,
+    }
+  );
 
   useEffect(() => {
     action.onAuthChange();
   }, [action]);
-
-  useEffect(() => {
-    if (user) {
-      // readLikeProduct((products) => {
-      //   products
-      //     ? setLikeCount(Object.keys(products[user.uid]).length)
-      //     : setLikeCount(0);
-      // });
-
-      readBasketProduct((products) => {
-        products
-          ? setBasketCount(Object.keys(products[user.uid]).length)
-          : setBasketCount(0);
-      });
-    }
-  }, [user]);
-
-  const { data: likeProducts } = useQuery(
-    ["like_products", user && user.uid],
-    () => readLikeProduct(user && user.uid)
-  );
-  // const { data: basketProducts } = useQuery(["basket"], readBasketProduct);
-
-  console.log(likeProducts);
 
   const [navbar, setNavbar] = useState(false);
 
@@ -111,7 +99,7 @@ export default function Header() {
               >
                 Like
                 <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                  {likeProducts && likeProducts.length}
+                  {(likeProducts && likeProducts.length) || "..."}
                 </p>
               </li>
               <li
@@ -120,7 +108,7 @@ export default function Header() {
               >
                 Basket
                 <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                  {basketCount}
+                  {(basketProducts && basketProducts.length) || "..."}
                 </p>
               </li>
             </div>
@@ -136,7 +124,7 @@ export default function Header() {
                 >
                   <FaHeart className=" text-lg ml-4" />
                   <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                    {likeProducts && likeProducts.length}
+                    {(likeProducts && likeProducts.length) || "..."}
                   </p>
                 </li>
                 <li
@@ -145,7 +133,7 @@ export default function Header() {
                 >
                   <FaShoppingBag className=" text-lg ml-4" />
                   <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                    {basketCount}
+                    {(basketProducts && basketProducts.length) || "..."}
                   </p>
                 </li>
                 {user.uid === process.env.REACT_APP_HOST_USER_UD && (

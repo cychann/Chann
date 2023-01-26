@@ -13,7 +13,9 @@ export default function Like() {
     isLoading,
     error,
     data: likeProducts,
-  } = useQuery(["like_products"], () => readLikeProduct(user && user.uid));
+  } = useQuery(["like_products", user && user.uid], () =>
+    readLikeProduct(user && user.uid)
+  );
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
       {isLoading && <Loading />}

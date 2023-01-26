@@ -18,7 +18,9 @@ export default function Product({ product }) {
     isLoading,
     error,
     data: likeProducts,
-  } = useQuery(["like_products"], () => readLikeProduct(user && user.uid));
+  } = useQuery(["like_products", user && user.uid], () =>
+    readLikeProduct(user && user.uid)
+  );
 
   const onClickProduct = () => {
     navigate(`/detail/${product.id}`, { state: { product } });

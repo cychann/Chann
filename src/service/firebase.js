@@ -51,8 +51,8 @@ export function removeProductToBasket(product, userId) {
   remove(ref(db, `basket/${userId}/${product.id}`));
 }
 
-export function readBasketProduct() {
-  return get(ref(db, "basket")).then((data) => {
+export function readBasketProduct(userId) {
+  return get(ref(db, `basket/${userId}`)).then((data) => {
     if (data.exists()) {
       return Object.values(data.val());
     }

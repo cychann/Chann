@@ -13,6 +13,7 @@ import CatecoryProducts from "./pages/CatecoryProducts";
 import Main from "./pages/Main";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <QueryClientProvider client={queryClient}>
+    <ReactQueryDevtools initialIsOpen={true} />
     <AuthenticationProvider>
       <RouterProvider router={router} />
     </AuthenticationProvider>
