@@ -7,11 +7,18 @@ import {
   readLikeProduct,
   removeProductToLike,
 } from "../service/firebase";
+import { useQuery } from "@tanstack/react-query";
+
 export default function Product({ product }) {
   const { user } = useAuthentication();
-  const [likeProducts, setLikeProducts] = useState({});
   const [isLike, setIsLike] = useState(false);
   const navigate = useNavigate();
+
+  const {
+    isLoading,
+    error,
+    data: likeProducts,
+  } = useQuery(["like_products"], () => readLikeProduct(user && user.uid));
 
   const onClickProduct = () => {
     navigate(`/detail/${product.id}`, { state: { product } });
@@ -30,15 +37,10 @@ export default function Product({ product }) {
   };
 
   useEffect(() => {
-    if (user) {
-      readLikeProduct((products) => {
-        products && setLikeProducts(products[user.uid]);
+    likeProducts &&
+      likeProducts.map((likeProduct) => {
+        if (likeProduct.id === product.id) setIsLike(true);
       });
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (product.id in likeProducts) setIsLike(true);
   }, [likeProducts, product.id]);
 
   return (

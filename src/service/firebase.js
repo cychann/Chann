@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, remove, get } from "firebase/database";
+import { getDatabase, ref, set, remove, get } from "firebase/database";
 import app from "./firebaseSDK";
 import { v4 as uuid } from "uuid";
 
@@ -34,11 +34,12 @@ export function removeProductToLike(product, userId) {
   remove(ref(db, `likes/${userId}/${product.id}`));
 }
 
-export function readLikeProduct(onUpdate) {
-  const productRef = ref(db, "likes");
-  onValue(productRef, (snapshot) => {
-    const data = snapshot.val();
-    onUpdate(data);
+export function readLikeProduct(userId) {
+  return get(ref(db, `likes/${userId}`)).then((data) => {
+    if (data.exists()) {
+      return Object.values(data.val());
+    }
+    return [];
   });
 }
 
@@ -50,10 +51,11 @@ export function removeProductToBasket(product, userId) {
   remove(ref(db, `basket/${userId}/${product.id}`));
 }
 
-export function readBasketProduct(onUpdate) {
-  const productRef = ref(db, "basket");
-  onValue(productRef, (snapshot) => {
-    const data = snapshot.val();
-    onUpdate(data);
+export function readBasketProduct() {
+  return get(ref(db, "basket")).then((data) => {
+    if (data.exists()) {
+      return Object.values(data.val());
+    }
+    return [];
   });
 }

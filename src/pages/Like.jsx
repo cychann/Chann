@@ -2,26 +2,28 @@ import React, { useEffect, useState } from "react";
 import Product from "../components/Product";
 import { useAuthentication } from "../context/AuthProvider";
 import { readLikeProduct } from "../service/firebase";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
+import ErrorPage from "./ErrorPage";
 
 export default function Like() {
   const { user } = useAuthentication();
-  const [likeProducts, setLikeProducts] = useState({});
 
-  useEffect(() => {
-    readLikeProduct((products) => {
-      if (user) {
-        products ? setLikeProducts(products[user.uid]) : setLikeProducts({});
-      }
-    });
-  }, [user]);
+  const {
+    isLoading,
+    error,
+    data: likeProducts,
+  } = useQuery(["like_products"], () => readLikeProduct(user && user.uid));
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
-      <h1 className="font-semibold text-3xl my-10">All Prodcuts</h1>
+      {isLoading && <Loading />}
+      {error && <ErrorPage />}
 
-      {Object.keys(likeProducts).length !== 0 ? (
+      <h1 className="font-semibold text-3xl my-10">Like Prodcuts</h1>
+      {likeProducts ? (
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4  gap-4 gap-y-5">
-          {Object.keys(likeProducts).map((key) => (
-            <Product product={likeProducts[key]} key={key} />
+          {likeProducts.map((product) => (
+            <Product product={product} key={product.id} />
           ))}
         </ul>
       ) : (

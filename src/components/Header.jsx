@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useAuthentication } from "../context/AuthProvider";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
-import { HiMenu } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { readBasketProduct, readLikeProduct } from "../service/firebase";
+import { useQuery } from "@tanstack/react-query";
 
 const CATECORIES = ["Men", "Women", "Bag", "Shoes"];
 
 export default function Header() {
   const { user, action } = useAuthentication();
-  const [likeCount, setLikeCount] = useState(0);
+  // const [likeCount, setLikeCount] = useState(0);
   const [basketCount, setBasketCount] = useState(0);
 
   const navigate = useNavigate();
@@ -21,11 +21,11 @@ export default function Header() {
 
   useEffect(() => {
     if (user) {
-      readLikeProduct((products) => {
-        products
-          ? setLikeCount(Object.keys(products[user.uid]).length)
-          : setLikeCount(0);
-      });
+      // readLikeProduct((products) => {
+      //   products
+      //     ? setLikeCount(Object.keys(products[user.uid]).length)
+      //     : setLikeCount(0);
+      // });
 
       readBasketProduct((products) => {
         products
@@ -34,6 +34,14 @@ export default function Header() {
       });
     }
   }, [user]);
+
+  const { data: likeProducts } = useQuery(
+    ["like_products", user && user.uid],
+    () => readLikeProduct(user && user.uid)
+  );
+  // const { data: basketProducts } = useQuery(["basket"], readBasketProduct);
+
+  console.log(likeProducts);
 
   const [navbar, setNavbar] = useState(false);
 
@@ -103,7 +111,7 @@ export default function Header() {
               >
                 Like
                 <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                  {likeCount}
+                  {likeProducts && likeProducts.length}
                 </p>
               </li>
               <li
@@ -128,7 +136,7 @@ export default function Header() {
                 >
                   <FaHeart className=" text-lg ml-4" />
                   <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                    {likeCount}
+                    {likeProducts && likeProducts.length}
                   </p>
                 </li>
                 <li
