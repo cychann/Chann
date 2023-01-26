@@ -5,25 +5,39 @@ import {
   addOrUpdateProductToBasket,
   removeProductToBasket,
 } from "../service/firebase";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function BasketProduct({ product }) {
   const { user } = useAuthentication();
+  const queryClient = useQueryClient();
+
+  const { mutate: addOrUpdateBasketProduct } = useMutation(
+    (product) => addOrUpdateProductToBasket(product, user.uid),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["basket_products", user.uid]);
+      },
+    }
+  );
+
+  const { mutate: deleteBaksetProduct } = useMutation(
+    (product) => removeProductToBasket(product, user.uid),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["basket_products", user.uid]);
+      },
+    }
+  );
 
   const onClickDelete = () => {
-    removeProductToBasket(product, user.uid);
+    deleteBaksetProduct(product);
   };
 
   const increaseCount = () => {
-    addOrUpdateProductToBasket(
-      { ...product, count: product.count + 1 },
-      user.uid
-    );
+    addOrUpdateBasketProduct({ ...product, count: product.count + 1 });
   };
   const decreaseConunt = () => {
-    addOrUpdateProductToBasket(
-      { ...product, count: product.count - 1 },
-      user.uid
-    );
+    addOrUpdateBasketProduct({ ...product, count: product.count - 1 });
   };
   return (
     <li className="border-t-2 py-4 flex items-center">

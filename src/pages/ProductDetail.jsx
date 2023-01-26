@@ -2,15 +2,26 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuthentication } from "../context/AuthProvider";
 import { addOrUpdateProductToBasket } from "../service/firebase";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
   const { user, action } = useAuthentication();
+  const queryClient = useQueryClient();
 
   const [sizeBtnActive, setSizeBtnActive] = useState(0);
   const [count, setCount] = useState(1);
+
+  const { mutate: addOrUpdateBasketProduct } = useMutation(
+    (product) => addOrUpdateProductToBasket(product, user.uid),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["basket_products", user.uid]);
+      },
+    }
+  );
 
   const toggleActive = (e) => {
     setSizeBtnActive(e.target.value);
@@ -34,7 +45,7 @@ export default function ProductDetail() {
         count,
         size: product.options[sizeBtnActive],
       };
-      addOrUpdateProductToBasket(addToProduct, user.uid);
+      addOrUpdateBasketProduct(addToProduct, user.uid);
     } else {
       action.signIn();
     }

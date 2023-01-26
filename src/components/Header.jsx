@@ -20,7 +20,7 @@ export default function Header() {
     }
   );
   const { data: basketProducts } = useQuery(
-    ["basket_products", user && user.id],
+    ["basket_products", user && user.uid],
     () => readBasketProduct(user && user.uid),
     {
       enabled: (user && !!user.uid) || false,

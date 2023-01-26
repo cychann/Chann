@@ -14,9 +14,13 @@ export default function Basket() {
     isLoading,
     error,
     data: basketProducts,
-  } = useQuery(["basket_products"], () => readBasketProduct(user && user.uid), {
-    enabled: (user && !!user.uid) || false,
-  });
+  } = useQuery(
+    ["basket_products", user && user.uid],
+    () => readBasketProduct(user && user.uid),
+    {
+      enabled: (user && !!user.uid) || false,
+    }
+  );
 
   useEffect(() => {
     setTotalPrice(0);
