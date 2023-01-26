@@ -7,19 +7,35 @@ import {
   readLikeProduct,
   removeProductToLike,
 } from "../service/firebase";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Product({ product }) {
   const { user } = useAuthentication();
   const [isLike, setIsLike] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const {
-    isLoading,
-    error,
-    data: likeProducts,
-  } = useQuery(["like_products", user && user.uid], () =>
-    readLikeProduct(user && user.uid)
+  const { data: likeProducts } = useQuery(
+    ["like_products", user && user.uid],
+    () => readLikeProduct(user && user.uid)
+  );
+
+  const { mutate: addLikeProduct } = useMutation(
+    () => addProductToLike(product, user.uid),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["like_products", user.uid]);
+      },
+    }
+  );
+
+  const { mutate: deleteLikeProduct } = useMutation(
+    () => removeProductToLike(product, user.uid),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["like_products", user.uid]);
+      },
+    }
   );
 
   const onClickProduct = () => {
@@ -30,9 +46,9 @@ export default function Product({ product }) {
     e.stopPropagation();
     if (user) {
       if (isLike) {
-        removeProductToLike(product, user.uid);
+        deleteLikeProduct(product, user.uid);
       } else {
-        addProductToLike(product, user.uid);
+        addLikeProduct(product, user.uid);
       }
       setIsLike(!isLike);
     }

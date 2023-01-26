@@ -29,9 +29,11 @@ export default function Like() {
           ))}
         </ul>
       ) : (
-        <div className="text-2xl font-bold">
-          찜한 상품이 없습니다. 상품을 등록해보세요!
-        </div>
+        isLoading || (
+          <div className="text-2xl font-bold">
+            찜한 상품이 없습니다. 상품을 등록해보세요!
+          </div>
+        )
       )}
     </div>
   );
