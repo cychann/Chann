@@ -4,7 +4,7 @@ import { useAuthentication } from "../context/AuthProvider";
 import {
   addOrUpdateProductToBasket,
   removeProductToBasket,
-} from "../service/database";
+} from "../service/firebase";
 
 export default function BasketProduct({ product }) {
   const { user } = useAuthentication();

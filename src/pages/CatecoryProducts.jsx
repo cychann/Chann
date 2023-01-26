@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../components/Product";
-import { readProductData } from "../service/database";
+import { readProductData } from "../service/firebase";
 
 export default function CatecoryProducts() {
   const [products, setProducts] = useState({});

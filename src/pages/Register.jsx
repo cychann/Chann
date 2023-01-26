@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { writeProductData } from "../service/database";
+import { writeProductData } from "../service/firebase";
 import { uploadImage } from "../service/UploadImage";
 
 export default function Register() {

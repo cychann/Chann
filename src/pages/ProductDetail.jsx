@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuthentication } from "../context/AuthProvider";
-import { addOrUpdateProductToBasket } from "../service/database";
+import { addOrUpdateProductToBasket } from "../service/firebase";
 
 export default function ProductDetail() {
   const {

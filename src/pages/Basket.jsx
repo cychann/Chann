@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BasketProduct from "../components/BasketProduct";
 import { useAuthentication } from "../context/AuthProvider";
-import { readBasketProduct } from "../service/database";
+import { readBasketProduct } from "../service/firebase";
 
 export default function Basket() {
   const { user } = useAuthentication();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Products from "../components/Products";
-import { readProductData } from "../service/database";
+import { readProductData } from "../service/firebase";
 
 export default function Main() {
   const [products, setProducts] = useState({});

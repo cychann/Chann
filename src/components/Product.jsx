@@ -6,7 +6,7 @@ import {
   addProductToLike,
   readLikeProduct,
   removeProductToLike,
-} from "../service/database";
+} from "../service/firebase";
 export default function Product({ product }) {
   const { user } = useAuthentication();
   const [likeProducts, setLikeProducts] = useState({});

@@ -4,7 +4,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { readBasketProduct, readLikeProduct } from "../service/database";
+import { readBasketProduct, readLikeProduct } from "../service/firebase";
 
 const CATECORIES = ["Men", "Women", "Bag", "Shoes"];
 
