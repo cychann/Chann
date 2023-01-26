@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, remove } from "firebase/database";
+import { getDatabase, ref, set, onValue, remove, get } from "firebase/database";
 import app from "./firebaseSDK";
 import { v4 as uuid } from "uuid";
 
@@ -17,11 +17,12 @@ export function writeProductData(product) {
   });
 }
 
-export function readProductData(onUpdate) {
-  const productRef = ref(db, "products");
-  onValue(productRef, (snapshot) => {
-    const data = snapshot.val();
-    data && onUpdate(data);
+export function readProductData() {
+  return get(ref(db, "products")).then((data) => {
+    if (data.exists()) {
+      return Object.values(data.val());
+    }
+    return [];
   });
 }
 

@@ -12,6 +12,8 @@ import Basket from "./pages/Basket";
 import CatecoryProducts from "./pages/CatecoryProducts";
 import Main from "./pages/Main";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,9 +30,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthenticationProvider>
-    <RouterProvider router={router} />
-  </AuthenticationProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthenticationProvider>
+      <RouterProvider router={router} />
+    </AuthenticationProvider>
+  </QueryClientProvider>
 );

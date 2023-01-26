@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../components/Product";
 import { readProductData } from "../service/firebase";
+import { useQuery } from "@tanstack/react-query";
 
 export default function CatecoryProducts() {
-  const [products, setProducts] = useState({});
+  // const [products, setProducts] = useState({});
   const { catecoryId } = useParams();
-  useEffect(() => {
-    readProductData((products) => {
-      setProducts(products);
-    });
-  }, []);
+  // useEffect(() => {
+  //   readProductData((products) => {
+  //     setProducts(products);
+  //   });
+  // }, []);
+
+  const {
+    isLoading,
+    error,
+    data: products,
+  } = useQuery(["products"], readProductData);
 
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">

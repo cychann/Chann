@@ -10,11 +10,7 @@ export default function Banner({ products }) {
       <ul className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 w-full place-items-center">
         <li className="relative w-2/3 h-[35rem] mt-12">
           <div className="mb-12 hidden lg:block">
-            <p className="font-bold text-6xl">
-              {Object.values(products).length !== 0 &&
-                Object.values(products).length}{" "}
-              +{" "}
-            </p>
+            <p className="font-bold text-6xl">{products.length}+ </p>
             <p className="font-semibold text-4xl">Products for you</p>
           </div>
           <img className="w-full h-full" src="/images/man-banner.jpeg" alt="" />
