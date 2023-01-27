@@ -49,7 +49,7 @@ export default function Basket() {
                   <p className="w-1/6 font-bold">SUBTOTAL</p>
                 </div>
               </div>
-              {basketProducts ? (
+              {basketProducts && (
                 <ul className="flex flex-col">
                   {basketProducts.map((basketProduct) => (
                     <BasketProduct
@@ -58,8 +58,9 @@ export default function Basket() {
                     />
                   ))}
                 </ul>
-              ) : (
-                <div className="text-xl text-center pt-10">
+              )}
+              {basketProducts && basketProducts.length === 0 && (
+                <div className="text-2xl font-bold text-center pt-10">
                   장바구니에 상품이 없습니다.
                 </div>
               )}
