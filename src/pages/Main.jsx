@@ -15,7 +15,7 @@ export default function Main() {
 
   return (
     <main>
-      {isLoading && <Loading />}
+      <div className="flex justify-center">{isLoading && <Loading />}</div>
       {error && <ErrorPage />}
       {products && (
         <>
