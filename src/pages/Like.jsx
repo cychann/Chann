@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Product from "../components/Product";
 import { useAuthentication } from "../context/AuthProvider";
 import { readLikeProduct } from "../service/firebase";

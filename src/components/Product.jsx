@@ -56,7 +56,7 @@ export default function Product({ product }) {
 
   useEffect(() => {
     likeProducts &&
-      likeProducts.map((likeProduct) => {
+      likeProducts.forEach((likeProduct) => {
         if (likeProduct.id === product.id) setIsLike(true);
       });
   }, [likeProducts, product.id]);
