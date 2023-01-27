@@ -69,7 +69,7 @@ export default function Product({ product }) {
         alt="product_image"
       />
       <div className="flex justify-between px-2">
-        <div className="">
+        <div className="w-11/12">
           <p className="text-sm text-gray-400 font-bold">{product.catecory}</p>
           <p className="font-semibold text-lg"> {product.name}</p>
           <p className="font-semibold text-lg">
@@ -79,8 +79,8 @@ export default function Product({ product }) {
         <FaHeart
           className={
             isLike
-              ? "text-xl cursor-pointer text-red-600"
-              : "text-xl cursor-pointer"
+              ? "text-xl cursor-pointer text-red-600 w-1/12"
+              : "text-xl cursor-pointer w-1/12"
           }
           onClick={onClickLikeBtn}
         />
