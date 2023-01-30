@@ -132,7 +132,7 @@ export default function Header() {
                 {user.uid === process.env.REACT_APP_HOST_USER_UD && (
                   <MdLibraryAdd
                     className=" text-lg ml-4 cursor-pointer"
-                    onClick={() => navigate("/cart")}
+                    onClick={() => navigate("/register")}
                   />
                 )}
               </ul>
