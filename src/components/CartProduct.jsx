@@ -1,8 +1,11 @@
 import React from "react";
 import { GrFormClose } from "react-icons/gr";
 import useCart from "../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 export default function CartProduct({ product }) {
+  const navigate = useNavigate();
+
   const { addOrUpdateCartProduct, removeCartProduct } = useCart();
 
   const onClickDelete = () => {
@@ -17,11 +20,16 @@ export default function CartProduct({ product }) {
   };
   return (
     <li className="border-t-2 py-4 flex items-center">
-      <div className="w-5/12 md:w-1/2 flex items-center mr-2">
+      <div
+        className="w-5/12 md:w-1/2 flex items-center mr-2 cursor-pointer"
+        onClick={() =>
+          navigate(`/detail/${product.id}`, { state: { product } })
+        }
+      >
         <img
           className="w-1/2 h-1/2 object-cover md:w-24 md:h-24 mr-2 md:mr-6"
           src={product.imageURL}
-          alt="basket_prodcut"
+          alt="cart_prodcut"
         />
         <div className="pt-2 md:pt-5 text-xs md:text-base w-1/2">
           <p className="font-bold">{product.name}</p>
