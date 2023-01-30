@@ -1,8 +1,6 @@
 import React from "react";
 import Banner from "../components/Banner";
 import Products from "../components/Products";
-import { readProductData } from "../service/firebase";
-import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";
 import useProducts from "../hooks/useProducts";

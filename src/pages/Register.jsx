@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import useProducts from "../hooks/useProducts";
-import { addeProductData } from "../service/firebase";
 import { uploadImage } from "../service/UploadImage";
 
 export default function Register() {

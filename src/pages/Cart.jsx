@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useAuthentication } from "../context/AuthProvider";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";
 import CartProduct from "../components/CartProduct";

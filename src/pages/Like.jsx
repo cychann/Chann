@@ -1,7 +1,5 @@
 import React from "react";
 import Product from "../components/Product";
-import { readLikeProduct } from "../service/firebase";
-import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";
 import useLike from "../hooks/useLike";

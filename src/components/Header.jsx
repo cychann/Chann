@@ -3,8 +3,6 @@ import { useAuthentication } from "../context/AuthProvider";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { readBasketProduct, readLikeProduct } from "../service/firebase";
-import { useQuery } from "@tanstack/react-query";
 import useLike from "../hooks/useLike";
 import useCart from "../hooks/useCart";
 
