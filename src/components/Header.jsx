@@ -5,6 +5,8 @@ import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { readBasketProduct, readLikeProduct } from "../service/firebase";
 import { useQuery } from "@tanstack/react-query";
+import useLike from "../hooks/useLike";
+import useCart from "../hooks/useCart";
 
 const CATECORIES = ["Men", "Women", "Bag", "Shoes"];
 
@@ -12,20 +14,13 @@ export default function Header() {
   const { user, action } = useAuthentication();
   const navigate = useNavigate();
 
-  const { data: likeProducts } = useQuery(
-    ["like_products", user && user.uid],
-    () => readLikeProduct(user && user.uid),
-    {
-      enabled: (user && !!user.uid) || false,
-    }
-  );
-  const { data: basketProducts } = useQuery(
-    ["basket_products", user && user.uid],
-    () => readBasketProduct(user && user.uid),
-    {
-      enabled: (user && !!user.uid) || false,
-    }
-  );
+  const {
+    likeQuery: { data: likeProducts },
+  } = useLike();
+
+  const {
+    cartQuery: { data: basketProducts },
+  } = useCart();
 
   useEffect(() => {
     action.onAuthChange();

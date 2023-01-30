@@ -8,13 +8,13 @@ import { AuthenticationProvider } from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Like from "./pages/Like";
 import ProductDetail from "./pages/ProductDetail";
-import Basket from "./pages/Basket";
 import CatecoryProducts from "./pages/CatecoryProducts";
 import Main from "./pages/Main";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         path: "/basket",
         element: (
           <ProtectedRoute>
-            <Basket />
+            <Cart />
           </ProtectedRoute>
         ),
       },

@@ -1,43 +1,19 @@
 import React from "react";
 import { GrFormClose } from "react-icons/gr";
-import { useAuthentication } from "../context/AuthProvider";
-import {
-  addOrUpdateProductToBasket,
-  removeProductToBasket,
-} from "../service/firebase";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useCart from "../hooks/useCart";
 
-export default function BasketProduct({ product }) {
-  const { user } = useAuthentication();
-  const queryClient = useQueryClient();
-
-  const { mutate: addOrUpdateBasketProduct } = useMutation(
-    (product) => addOrUpdateProductToBasket(product, user.uid),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["basket_products", user.uid]);
-      },
-    }
-  );
-
-  const { mutate: deleteBaksetProduct } = useMutation(
-    (product) => removeProductToBasket(product, user.uid),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["basket_products", user.uid]);
-      },
-    }
-  );
+export default function CartProduct({ product }) {
+  const { addOrUpdateCartProduct, removeCartProduct } = useCart();
 
   const onClickDelete = () => {
-    deleteBaksetProduct(product);
+    removeCartProduct.mutate(product);
   };
 
   const increaseCount = () => {
-    addOrUpdateBasketProduct({ ...product, count: product.count + 1 });
+    addOrUpdateCartProduct.mutate({ ...product, count: product.count + 1 });
   };
   const decreaseConunt = () => {
-    addOrUpdateBasketProduct({ ...product, count: product.count - 1 });
+    addOrUpdateCartProduct.mutate({ ...product, count: product.count - 1 });
   };
   return (
     <li className="border-t-2 py-4 flex items-center">

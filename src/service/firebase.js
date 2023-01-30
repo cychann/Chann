@@ -43,15 +43,15 @@ export async function readLikeProduct(userId) {
   });
 }
 
-export async function addOrUpdateProductToBasket(product, userId) {
+export async function addOrUpdateProductToCart(product, userId) {
   set(ref(db, `basket/${userId}/${product.id}`), product);
 }
 
-export async function removeProductToBasket(product, userId) {
+export async function removeProductToCart(product, userId) {
   remove(ref(db, `basket/${userId}/${product.id}`));
 }
 
-export async function readBasketProduct(userId) {
+export async function readCartProduct(userId) {
   return get(ref(db, `basket/${userId}`)).then((data) => {
     if (data.exists()) {
       return Object.values(data.val());

@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
-import BasketProduct from "../components/BasketProduct";
 import { useAuthentication } from "../context/AuthProvider";
-import { readBasketProduct } from "../service/firebase";
-import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";
+import CartProduct from "../components/CartProduct";
+import useCart from "../hooks/useCart";
 
-export default function Basket() {
-  const { user } = useAuthentication();
+export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const {
-    isLoading,
-    error,
-    data: basketProducts,
-  } = useQuery(
-    ["basket_products", user && user.uid],
-    () => readBasketProduct(user && user.uid),
-    {
-      enabled: (user && !!user.uid) || false,
-    }
-  );
+    cartQuery: { isLoading, error, data: basketProducts },
+  } = useCart();
 
   useEffect(() => {
     setTotalPrice(0);
@@ -52,7 +42,7 @@ export default function Basket() {
               {basketProducts && (
                 <ul className="flex flex-col">
                   {basketProducts.map((basketProduct) => (
-                    <BasketProduct
+                    <CartProduct
                       product={basketProduct}
                       key={basketProduct.id}
                     />

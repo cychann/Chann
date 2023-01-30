@@ -1,31 +1,19 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuthentication } from "../context/AuthProvider";
-import { addOrUpdateProductToBasket } from "../service/firebase";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useCart from "../hooks/useCart";
 
 export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
   const { user, action } = useAuthentication();
-  const queryClient = useQueryClient();
 
   const [sizeBtnActive, setSizeBtnActive] = useState(0);
   const [count, setCount] = useState(1);
-  const [isUploading, setIsUploading] = useState(false);
   const [succeess, setSuccess] = useState("");
 
-  const { mutate: addOrUpdateBasketProduct } = useMutation(
-    (product) => addOrUpdateProductToBasket(product, user.uid),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["basket_products", user.uid]);
-        setSuccess("✅ 제품이 성공적으로 추가되었습니다!");
-        setTimeout(() => setSuccess(false), 3000);
-      },
-    }
-  );
+  const { addOrUpdateCartProduct } = useCart();
 
   const toggleActive = (e) => {
     setSizeBtnActive(e.target.value);
@@ -49,7 +37,12 @@ export default function ProductDetail() {
         count,
         size: product.options[sizeBtnActive],
       };
-      addOrUpdateBasketProduct(addToProduct, user.uid);
+      addOrUpdateCartProduct.mutate(addToProduct, user.uid, {
+        onSuccess: () => {
+          setSuccess("✅ 제품이 성공적으로 추가되었습니다!");
+          setTimeout(() => setSuccess(false), 3000);
+        },
+      });
     } else {
       action.signIn();
     }
@@ -99,7 +92,7 @@ export default function ProductDetail() {
             type="submit"
             onClick={addToBasket}
           >
-            {isUploading ? "업로드 중 ........" : "ADD TO BASKET"}
+            ADD TO CART
           </button>
         </div>
         {succeess && <p className="text-xl font-semibold">{succeess}</p>}

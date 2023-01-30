@@ -1,21 +1,15 @@
 import React from "react";
 import Product from "../components/Product";
-import { useAuthentication } from "../context/AuthProvider";
 import { readLikeProduct } from "../service/firebase";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";
+import useLike from "../hooks/useLike";
 
 export default function Like() {
-  const { user } = useAuthentication();
-
   const {
-    isLoading,
-    error,
-    data: likeProducts,
-  } = useQuery(["like_products", user && user.uid], () =>
-    readLikeProduct(user && user.uid)
-  );
+    likeQuery: { isLoading, error, data: likeProducts },
+  } = useLike();
   return (
     <div className="flex flex-col items-center max-w-7xl m-auto">
       {isLoading && <Loading />}
