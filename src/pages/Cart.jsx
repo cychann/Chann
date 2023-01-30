@@ -8,23 +8,23 @@ export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const {
-    cartQuery: { isLoading, error, data: basketProducts },
+    cartQuery: { isLoading, error, data: cartProducts },
   } = useCart();
 
   useEffect(() => {
     setTotalPrice(0);
-    basketProducts &&
-      basketProducts.map((basketProduct) => {
-        const subTotal = basketProduct.price * basketProduct.count;
+    cartProducts &&
+      cartProducts.map((cartProduct) => {
+        const subTotal = cartProduct.price * cartProduct.count;
         return setTotalPrice((prev) => prev + subTotal);
       });
-  }, [basketProducts]);
+  }, [cartProducts]);
 
   return (
     <div className="flex flex-col items-center m-auto">
       {isLoading && <Loading />}
       {error && <ErrorPage />}
-      {basketProducts && (
+      {cartProducts && (
         <>
           <h1 className="font-semibold text-3xl my-10">Shopping Cart</h1>
           <hr className="w-full mb-10" />
@@ -38,17 +38,14 @@ export default function Cart() {
                   <p className="w-1/6 font-bold">SUBTOTAL</p>
                 </div>
               </div>
-              {basketProducts && (
+              {cartProducts && (
                 <ul className="flex flex-col">
-                  {basketProducts.map((basketProduct) => (
-                    <CartProduct
-                      product={basketProduct}
-                      key={basketProduct.id}
-                    />
+                  {cartProducts.map((cartProduct) => (
+                    <CartProduct product={cartProduct} key={cartProduct.id} />
                   ))}
                 </ul>
               )}
-              {basketProducts && basketProducts.length === 0 && (
+              {cartProducts && cartProducts.length === 0 && (
                 <div className="text-2xl font-bold text-center pt-10">
                   장바구니에 상품이 없습니다.
                 </div>
@@ -59,17 +56,17 @@ export default function Cart() {
                 Order Summary
               </h1>
               <hr />
-              {basketProducts && (
+              {cartProducts && (
                 <ul className="flex flex-col border-gray-400 border-b-2 py-4">
-                  {basketProducts.map((basketProduct) => (
+                  {cartProducts.map((cartProduct) => (
                     <li
                       className="flex justify-between mb-3"
-                      key={basketProduct.id}
+                      key={cartProduct.id}
                     >
-                      <p className="w-1/3">{basketProduct.name}</p>
+                      <p className="w-1/3">{cartProduct.name}</p>
                       <p className="font-bold">
                         {(
-                          +basketProduct.price * basketProduct.count
+                          +cartProduct.price * cartProduct.count
                         ).toLocaleString()}
                         원
                       </p>

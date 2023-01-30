@@ -4,7 +4,7 @@ import {
   addOrUpdateProductToCart,
   readCartProduct,
   removeProductToCart,
-} from "../service/firebase";
+} from "../api/firebase";
 
 export default function useCart() {
   const queryClient = useQueryClient();

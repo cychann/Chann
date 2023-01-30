@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Product from "../components/Product";
-import { readProductData } from "../service/firebase";
+import { readProductData } from "../api/firebase";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ErrorPage from "./ErrorPage";

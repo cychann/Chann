@@ -17,7 +17,7 @@ export default function Header() {
   } = useLike();
 
   const {
-    cartQuery: { data: basketProducts },
+    cartQuery: { data: cartProducts },
   } = useCart();
 
   useEffect(() => {
@@ -97,11 +97,11 @@ export default function Header() {
               </li>
               <li
                 className="cursor-pointer text-lg text-gray-600 hover:text-black px-2 lg:px-4 flex items-center"
-                onClick={() => navigate("/basket")}
+                onClick={() => navigate("/cart")}
               >
-                Basket
+                Cart
                 <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                  {(basketProducts && basketProducts.length) || "0"}
+                  {(cartProducts && cartProducts.length) || "0"}
                 </p>
               </li>
             </div>
@@ -122,17 +122,17 @@ export default function Header() {
                 </li>
                 <li
                   className="flex items-center justify-center cursor-pointer"
-                  onClick={() => navigate("/basket")}
+                  onClick={() => navigate("/cart")}
                 >
                   <FaShoppingBag className=" text-lg ml-4" />
                   <p className="bg-black rounded-full text-white w-5 h-5 flex justify-center items-center ml-1 text-sm">
-                    {(basketProducts && basketProducts.length) || "0"}
+                    {(cartProducts && cartProducts.length) || "0"}
                   </p>
                 </li>
                 {user.uid === process.env.REACT_APP_HOST_USER_UD && (
                   <MdLibraryAdd
                     className=" text-lg ml-4 cursor-pointer"
-                    onClick={() => navigate("/register")}
+                    onClick={() => navigate("/cart")}
                   />
                 )}
               </ul>

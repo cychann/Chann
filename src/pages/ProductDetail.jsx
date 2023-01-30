@@ -30,7 +30,7 @@ export default function ProductDetail() {
     });
   };
 
-  const addToBasket = () => {
+  const addToCart = () => {
     if (user) {
       const addToProduct = {
         ...product,
@@ -90,7 +90,7 @@ export default function ProductDetail() {
           <button
             className="w-1/2 h-12 bg-black text-white font-bold"
             type="submit"
-            onClick={addToBasket}
+            onClick={addToCart}
           >
             ADD TO CART
           </button>

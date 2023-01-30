@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import useProducts from "../hooks/useProducts";
-import { uploadImage } from "../service/UploadImage";
+import { uploadImage } from "../api/UploadImage";
 
 export default function Register() {
   const [imageUploadURL, setImageUploadURL] = useState("");

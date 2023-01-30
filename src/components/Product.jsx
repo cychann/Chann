@@ -49,7 +49,7 @@ export default function Product({ product }) {
         <div className="w-11/12">
           <p className="text-sm text-gray-400 font-bold">{product.catecory}</p>
           <p className="font-semibold text-lg"> {product.name}</p>
-          <p className="font-semibold text-lg">
+          <p className="font-semibold text-lg text-gray-600">
             {(+product.price).toLocaleString()}원
           </p>
         </div>

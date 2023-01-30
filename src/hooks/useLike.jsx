@@ -4,7 +4,7 @@ import {
   addProductToLike,
   readLikeProduct,
   removeProductToLike,
-} from "../service/firebase";
+} from "../api/firebase";
 
 export default function useLike() {
   const queryClient = useQueryClient();
