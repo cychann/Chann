@@ -14,6 +14,7 @@ import Main from "./pages/Main";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,9 +24,30 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Main /> },
       { path: "catecories/:catecoryId", element: <CatecoryProducts /> },
-      { path: "/register", element: <Register /> },
-      { path: "/like", element: <Like /> },
-      { path: "/basket", element: <Basket /> },
+      {
+        path: "/register",
+        element: (
+          <ProtectedRoute requireAdmin>
+            <Register />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/like",
+        element: (
+          <ProtectedRoute>
+            <Like />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/basket",
+        element: (
+          <ProtectedRoute>
+            <Basket />
+          </ProtectedRoute>
+        ),
+      },
       { path: "/detail/:productId", element: <ProductDetail /> },
     ],
   },
