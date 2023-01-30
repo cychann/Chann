@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
-import { writeProductData } from "../service/firebase";
+import { addeProductData } from "../service/firebase";
 import { uploadImage } from "../service/UploadImage";
 
 export default function Register() {
   const [imageUploadURL, setImageUploadURL] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [succeess, setSuccess] = useState("");
 
   const formRef = useRef();
   const imageRef = useRef();
@@ -23,6 +25,7 @@ export default function Register() {
 
   const onSubmitProduct = (e) => {
     e.preventDefault();
+    setIsUploading(true);
     const product = {
       imageURL: imageUploadURL || "",
       name: nameRef.current.value,
@@ -31,15 +34,20 @@ export default function Register() {
       description: descriptionRef.current.value,
       options: optionsRef.current.value,
     };
-    formRef.current.reset();
     setImageUploadURL("");
-    writeProductData(product);
+    addeProductData(product).then(() => {
+      setSuccess("✅ 제품이 성공적으로 추가되었습니다!");
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    });
   };
   return (
     <div className="flex flex-col items-center w-full">
       <h1 className="font-bold text-3xl w-full h-60 flex items-center justify-center">
         Register New Product
       </h1>
+      {succeess && <p className="text-2xl font-semibold">{succeess}</p>}
       <form
         className="flex items-center w-1/2"
         ref={formRef}
@@ -106,7 +114,7 @@ export default function Register() {
             className="w-full my-1 p-3 bg-black text-white font-semibold"
             type="submit"
           >
-            Register!
+            {isUploading ? "업로드 중 ........" : "Register!"}
           </button>
         </div>
       </form>

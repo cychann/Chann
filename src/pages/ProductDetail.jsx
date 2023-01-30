@@ -13,12 +13,16 @@ export default function ProductDetail() {
 
   const [sizeBtnActive, setSizeBtnActive] = useState(0);
   const [count, setCount] = useState(1);
+  const [isUploading, setIsUploading] = useState(false);
+  const [succeess, setSuccess] = useState("");
 
   const { mutate: addOrUpdateBasketProduct } = useMutation(
     (product) => addOrUpdateProductToBasket(product, user.uid),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["basket_products", user.uid]);
+        setSuccess("✅ 제품이 성공적으로 추가되었습니다!");
+        setTimeout(() => setSuccess(false), 3000);
       },
     }
   );
@@ -80,7 +84,7 @@ export default function ProductDetail() {
             </li>
           ))}
         </ul>
-        <div className="w-full flex items-center">
+        <div className="w-full flex items-center mb-10">
           <div className="w-28 h-12 mr-3 border border-gray-300 flex justify-between items-center px-3">
             <p className="text-3xl cursor-pointer" onClick={decreaseCount}>
               -
@@ -95,9 +99,10 @@ export default function ProductDetail() {
             type="submit"
             onClick={addToBasket}
           >
-            ADD TO BASKET
+            {isUploading ? "업로드 중 ........" : "ADD TO BASKET"}
           </button>
         </div>
+        {succeess && <p className="text-xl font-semibold">{succeess}</p>}
       </div>
     </div>
   );

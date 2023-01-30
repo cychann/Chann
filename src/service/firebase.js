@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 const db = getDatabase(app);
 
-export function writeProductData(product) {
+export async function addeProductData(product) {
   const id = uuid();
   set(ref(db, `products/${id}`), {
     id,
@@ -17,7 +17,7 @@ export function writeProductData(product) {
   });
 }
 
-export function readProductData() {
+export async function readProductData() {
   return get(ref(db, "products")).then((data) => {
     if (data.exists()) {
       return Object.values(data.val());
@@ -26,15 +26,15 @@ export function readProductData() {
   });
 }
 
-export function addProductToLike(product, userId) {
+export async function addProductToLike(product, userId) {
   set(ref(db, `likes/${userId}/${product.id}`), product);
 }
 
-export function removeProductToLike(product, userId) {
+export async function removeProductToLike(product, userId) {
   remove(ref(db, `likes/${userId}/${product.id}`));
 }
 
-export function readLikeProduct(userId) {
+export async function readLikeProduct(userId) {
   return get(ref(db, `likes/${userId}`)).then((data) => {
     if (data.exists()) {
       return Object.values(data.val());
@@ -43,15 +43,15 @@ export function readLikeProduct(userId) {
   });
 }
 
-export function addOrUpdateProductToBasket(product, userId) {
+export async function addOrUpdateProductToBasket(product, userId) {
   set(ref(db, `basket/${userId}/${product.id}`), product);
 }
 
-export function removeProductToBasket(product, userId) {
+export async function removeProductToBasket(product, userId) {
   remove(ref(db, `basket/${userId}/${product.id}`));
 }
 
-export function readBasketProduct(userId) {
+export async function readBasketProduct(userId) {
   return get(ref(db, `basket/${userId}`)).then((data) => {
     if (data.exists()) {
       return Object.values(data.val());

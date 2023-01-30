@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children, requireAdmin }) {
 
   if (
     !user ||
-    (requireAdmin && requireAdmin !== process.env.REACT_APP_HOST_USER_UD)
+    (requireAdmin && user.uid !== process.env.REACT_APP_HOST_USER_UD)
   ) {
     return <Navigate to="/" replace />;
   }
