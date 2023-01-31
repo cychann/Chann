@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# [React] Shopping Mall Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://chann.netlify.app/
 
-## Available Scripts
+## 적용 개념
 
-In the project directory, you can run:
+- Context API
+- React Query
+- Firebase Authentication
+- Firebase Realtime Database
+- Cloudinary Media Upload
+- tailwind CSS
 
-### `yarn start`
+## 구현 내용
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. 로그인, 로그아웃
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Firebase Authentication -> 로그인, 로그아웃, 사용자 변경감지 기능 구현
 
-### `yarn test`
+Context API -> 사용자 정보를 관리하는 user Context를 정의. 필요한 컴포넌트에서 user 정보 조회 가능
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![ezgif com-gif-maker (26)](https://user-images.githubusercontent.com/66055587/215784064-023483dd-7790-47af-a510-e4a824bbd5ef.gif)
 
-### `yarn build`
+### 2. 메인 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Firebase Realtime Database + React Query -> 상품 목록 조회
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![ezgif com-gif-maker (27)](https://user-images.githubusercontent.com/66055587/215785783-e5cd0e3e-7539-42e9-9225-655a99f044c2.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. 제품 등록 페이지
 
-### `yarn eject`
+등록된 admin user만 제품 등록 페이지로 접근 가능하도록 설정
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Firebase Realtime Database + React Query -> 제품 등록 기능 구현
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Cloudinary Media Upload -> 이미지 업로드 및 저장
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![ezgif com-gif-maker (32)](https://user-images.githubusercontent.com/66055587/215787222-e8acbf75-f758-46f5-bc2e-ff326c376e73.gif)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. 제품 상세 페이지
 
-## Learn More
+![ezgif com-gif-maker (28)](https://user-images.githubusercontent.com/66055587/215785233-1bf53715-ecd9-454e-83d9-ed94332d544d.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. 제품 카테고리 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![ezgif com-gif-maker (29)](https://user-images.githubusercontent.com/66055587/215785380-17310382-af1a-498c-ae3b-15203edf0394.gif)
 
-### Code Splitting
+### 6. 좋아요
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Firebase Realtime Database + React Query -> 좋아요 목록 추가, 삭제, 읽기 기능 구현
 
-### Analyzing the Bundle Size
+![ezgif com-gif-maker (30)](https://user-images.githubusercontent.com/66055587/215785572-db5935ec-5d04-44af-803a-1827ba629381.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 7. 장바구니
 
-### Making a Progressive Web App
+Firebase Realtime Database + React Query -> 장바구니 목록 추가, 변경, 삭제, 읽기 기능 구현
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![ezgif com-gif-maker (31)](https://user-images.githubusercontent.com/66055587/215785688-142066fa-f26e-4233-9b20-04802f048d60.gif)
