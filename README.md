@@ -59,4 +59,4 @@ Firebase Realtime Database + React Query -> 장바구니 목록 추가, 변경, 
 
 ### 8. 반응형
 
-![ezgif com-gif-maker (36)](https://user-images.githubusercontent.com/66055587/215799808-357129d5-572c-45b0-b655-96c59239857a.gif)
+![ezgif com-gif-maker (36)](https://user-images.githubusercontent.com/66055587/215800164-915aa70a-9d93-48ce-8b23-d922ab72abdd.gif)
