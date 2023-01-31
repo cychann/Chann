@@ -25,7 +25,7 @@ Context API -> 사용자 정보를 관리하는 user Context를 정의. 필요�
 
 Firebase Realtime Database + React Query -> 상품 목록 조회
 
-![ezgif com-gif-maker (27)](https://user-images.githubusercontent.com/66055587/215785783-e5cd0e3e-7539-42e9-9225-655a99f044c2.gif)
+![ezgif com-gif-maker (34)](https://user-images.githubusercontent.com/66055587/215796551-e8465979-9f2f-403e-bdb2-dbaa70a032aa.gif)
 
 ### 3. 제품 등록 페이지
 
