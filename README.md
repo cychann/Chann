@@ -56,3 +56,7 @@ Firebase Realtime Database + React Query -> 좋아요 목록 추가, 삭제, 읽
 Firebase Realtime Database + React Query -> 장바구니 목록 추가, 변경, 삭제, 읽기 기능 구현
 
 ![ezgif com-gif-maker (31)](https://user-images.githubusercontent.com/66055587/215785688-142066fa-f26e-4233-9b20-04802f048d60.gif)
+
+### 8. 반응형
+
+![ezgif com-gif-maker (36)](https://user-images.githubusercontent.com/66055587/215799808-357129d5-572c-45b0-b655-96c59239857a.gif)
